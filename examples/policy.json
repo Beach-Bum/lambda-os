@@ -1,0 +1,93 @@
+{
+  "_comment": "Sample policy.json for agentix-logos. Copy to <workspace>/.agentix/policy.json. See ../docs/POLICY-SCHEMA.md for the full schema.",
+
+  "denied": [
+    "sudo",
+    "rm -rf",
+    "git push",
+    "git commit",
+    "/etc/nixos",
+    "nixos-rebuild switch",
+    "rebuild-nixos",
+    "lgs deploy",
+    "lgs wallet topup",
+    "agentix apply-verify"
+  ],
+
+  "review": [
+    "nix flake update",
+    "submodule add",
+    "patch apply",
+    "ws update",
+    "lgs basecamp install"
+  ],
+
+  "allowed": [
+    "ws build",
+    "ws develop",
+    "ws status",
+    "ws list",
+    "ws graph",
+    "ws dirty",
+    "nix build",
+    "logoscore",
+    "lm",
+    "lgs doctor",
+    "lgs basecamp doctor",
+    "lgs basecamp modules --show"
+  ],
+
+  "logos": {
+    "require_metadata_json": true,
+    "require_signed_metadata": false,
+    "require_rln_for_messaging_modules": true,
+    "module_install_via": "ws --auto-local",
+
+    "forbid_flake_overrides": [
+      "nixpkgs",
+      "logos-blockchain"
+    ],
+
+    "forbidden_paths_for_writes": [
+      "~/.local/share/logos-basecamp",
+      "~/Library/Application Support/LogosBasecamp",
+      "~/.config/logos-execution-zone-wallet",
+      "logos-workspace/repos/*",
+      "/etc/nixos"
+    ],
+    "sandbox_port_range": [13000, 14000],
+    "redirect_logos_user_dir": true,
+
+    "forbid_wallet_operations": true,
+    "forbid_live_localnet": true,
+
+    "lez_programs_pinned": true,
+    "forbid_lez_program_deploy": true,
+
+    "lip_edits_via_proposal_only": true,
+
+    "audit_extra_fields_required": [
+      "agentix_logos_version",
+      "logos_workspace_commit",
+      "modules_touched",
+      "logoscore_calls",
+      "nix_flake_lock_changed",
+      "lez_program_pin_changed",
+      "stops_before_apply",
+      "stops_before_rebuild",
+      "stops_before_lgs_deploy",
+      "stops_before_lgs_wallet"
+    ],
+
+    "submodule_snapshot": true,
+    "submodule_drift_is_violation": true,
+
+    "ignore_paths": [
+      "repos/*/result",
+      "repos/*/result-*",
+      ".direnv",
+      ".scaffold/state/*.lock",
+      ".scaffold/logs/*"
+    ]
+  }
+}

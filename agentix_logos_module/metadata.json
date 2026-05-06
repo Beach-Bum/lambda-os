@@ -1,0 +1,20 @@
+{
+  "name": "agentix_logos_module",
+  "display_name": "Agentix Logos",
+  "version": "0.1.0",
+  "description": "Safety infrastructure for AI agents operating Logos modules. Exposes controller planning, audit trail, policy enforcement, source snapshots, and module verification — all read-only or dry-run from the module surface.",
+  "author": "Beach-Bum",
+  "type": "core",
+  "category": "agent-control",
+  "main": "agentix_logos_module_plugin",
+  "dependencies": [],
+  "capabilities": [
+    "agent-control",
+    "audit",
+    "policy",
+    "verification"
+  ],
+  "rln": false,
+  "homepage": "https://github.com/Beach-Bum/agentix-logos",
+  "license": "MIT"
+}

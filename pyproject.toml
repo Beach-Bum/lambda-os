@@ -1,0 +1,66 @@
+[project]
+name = "lambda-os"
+version = "0.0.1"
+description = "The agentic operating system for Logos. Control plane that operates the Logos technology stack with safety, auditability, and governance."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Beach-Bum" },
+]
+keywords = ["agentix", "logos", "nix", "agents", "decentralised"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development",
+    "Topic :: System :: Operating System",
+]
+dependencies = [
+    "tomli>=2.0; python_version<'3.11'",
+    # ed25519 signature verification for require_signed_metadata policy.
+    # PyNaCl is small (~800KB), uses libsodium, audited cryptography. Pure
+    # stdlib alternatives don't ship ed25519 in 3.11+.
+    "pynacl>=1.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+agentix-logos = "agentix_logos.cli:main"
+agentix-daemon = "agentix_logos.daemon:main"
+
+[project.urls]
+Homepage = "https://github.com/Beach-Bum/lambda-os"
+Repository = "https://github.com/Beach-Bum/lambda-os"
+Issues = "https://github.com/Beach-Bum/lambda-os/issues"
+Agentix = "https://github.com/Beach-Bum/Agentix"
+Logos = "https://logos.co"
+
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["agentix_logos", "agentix_logos_module"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

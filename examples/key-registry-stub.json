@@ -1,0 +1,19 @@
+{
+  "_comment": "STUB IFT key registry. Phase 2 ships these placeholder keys so the require_signed_metadata policy rule can be tested and demonstrated. Phase 3+ replaces this file with the real IFT registry once Logos publishes signed module metadata. Public keys here are derived from documented test seeds (see tests/test_keys.py) — NOT real IFT keys, NOT secret. Do not sign production modules with these keys.",
+
+  "version": 1,
+  "keys": [
+    {
+      "key_id": "ift-stub-key-001",
+      "public_key_hex": "5f5aede7d15163104e4b66d58c66bccbc0001ad7c5445b47b8987ac66c50bcab",
+      "label": "Stub IFT module signing key 001 (test fixture, NOT a real IFT key)",
+      "created": "2026-05-06"
+    },
+    {
+      "key_id": "ift-stub-key-002",
+      "public_key_hex": "5e4508e5f4bfbf104b23179e04b96be459bc8d432a0dff70231f9ce0a7144eba",
+      "label": "Stub IFT module signing key 002 (test fixture, NOT a real IFT key)",
+      "created": "2026-05-06"
+    }
+  ]
+}
