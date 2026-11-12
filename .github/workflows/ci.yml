@@ -22,15 +22,17 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
 
+      # A project environment, not the runner's system Python: Ubuntu marks
+      # that one as externally managed and refuses installs into it.
       - name: Install dependencies
-        run: uv pip install -e ".[dev]" --system
+        run: uv sync --extra dev --python ${{ matrix.python-version }}
 
       - name: Run tests
-        run: uv run pytest -q
+        run: uv run --extra dev pytest -q
 
       - name: Lint with ruff
-        run: uv run ruff check .
+        run: uv run --extra dev ruff check .
 
       - name: Type check with mypy
-        run: uv run mypy agentix_logos/
+        run: uv run --extra dev mypy agentix_logos/
         continue-on-error: true
